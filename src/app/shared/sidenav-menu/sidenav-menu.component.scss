@@ -1,0 +1,27 @@
+.sidenav {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+
+    .list-item-container {
+        display: flex;
+        align-items: center;
+        gap: 10px
+    }
+
+    .logged-in-user {
+        font-size: 16px;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-left: 20px;
+
+        .name {
+            text-decoration: underline;
+        }
+    }
+}
+
+

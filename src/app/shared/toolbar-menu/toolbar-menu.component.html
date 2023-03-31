@@ -1,0 +1,25 @@
+<mat-toolbar color="primary" class="toolbar-menu">
+    <div class="menu-left">
+        <button mat-icon-button class="burger-menu-icon" (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="bookworm-title">bookworm</span>
+    </div>
+    <div class="menu-right">
+        <ul class="navigation-items">
+            <li *ngIf="!user"><a routerLink="/login">Login</a></li>
+            <li *ngIf="user"><a (click)="logout()">Logout</a></li>
+            <li *ngIf="!user"><a routerLink="/signup">Register</a></li>
+            <li *ngIf="user && admin"><a routerLink="/admin">Admin</a></li>
+        </ul>
+        <div *ngIf="user" class="logged-in-user">
+            <span>Logged in: </span>
+            <span class="user-name">{{username}}</span>
+        </div>
+        <button mat-icon-button *ngIf="user">
+            <mat-icon matBadge="0" matBadgePosition="after" matBadgeColor="accent" matBadgeSize="small">
+                shopping_cart
+            </mat-icon>
+        </button>
+    </div>
+</mat-toolbar>

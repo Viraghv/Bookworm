@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "bookworm-webkert-2023": {
+      "hosting": {
+        "bookworm-webkert2023": [
+          "bookworm-webkert-2023"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "bookworm-webkert-2023"
+  }
+}

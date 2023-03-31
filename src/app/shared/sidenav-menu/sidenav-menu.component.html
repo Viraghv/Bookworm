@@ -1,0 +1,38 @@
+<mat-nav-list class="sidenav">
+    <a mat-list-item routerLink="/login" (click)="closeSideNav()" *ngIf="!user">
+        <div class="list-item-container" >
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+        </div>
+    </a>
+    <a mat-list-item (click)="logout()" *ngIf="user">
+        <div class="list-item-container">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </div>
+    </a>
+    <a mat-list-item routerLink="/signup" (click)="closeSideNav()" *ngIf="!user">
+        <div class="list-item-container">
+            <mat-icon>app_registration</mat-icon>
+            <span>Register</span>
+        </div>
+    </a>
+    <a mat-list-item routerLink="/admin" (click)="closeSideNav()" *ngIf="user && admin">
+        <div class="list-item-container">
+            <mat-icon>lock</mat-icon>
+            <span>Admin</span>
+        </div>
+    </a>
+    <a mat-list-item routerLink="/shopping-cart" (click)="closeSideNav()" *ngIf="user">
+        <div class="list-item-container">
+            <mat-icon>
+                shopping_cart
+            </mat-icon>
+            <span>Shopping cart ({{cartNumber}})</span>
+        </div>
+    </a>
+    <div class="logged-in-user" *ngIf="user">
+        <span>Logged in: </span>
+        <span class="name">{{username}}</span>
+    </div>
+</mat-nav-list>

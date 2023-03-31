@@ -1,0 +1,57 @@
+.toolbar-menu {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+
+    .menu-left {
+        .bookworm-title {
+            font-size: 28px;
+            margin-left: 20px;
+        }
+    }
+
+
+    .menu-right {
+        margin-right: 25px;
+        display: flex;
+        gap: 25px;
+        flex-direction: row;
+        align-items: center;
+
+        .navigation-items {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+
+            a {
+                text-decoration: none;
+                color: white;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .logged-in-user {
+            padding-left: 25px;
+            border-left: 1px solid white;
+
+            .user-name {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 885px) {
+    .burger-menu-icon {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 885px) {
+    .menu-right {
+        display: none !important;
+    }
+}

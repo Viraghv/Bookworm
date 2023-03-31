@@ -44,4 +44,9 @@ Thumbs.db
 /.vscode/
 /src/environments/
 package-lock.json
+/.angular/
 
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
