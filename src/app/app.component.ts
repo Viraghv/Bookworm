@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
-import {User} from "./shared/models/User";
+import {Router} from '@angular/router';
 import {AuthService} from "./shared/services/auth.service";
 import {UserService} from "./shared/services/user.service";
 
@@ -9,11 +8,12 @@ import {UserService} from "./shared/services/user.service";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
     title = 'bookworm-webkert2023';
     loggedInUser?: firebase.default.User | null;
 
-    constructor(private router: Router, private authService: AuthService, private userService: UserService) {}
+    constructor(private router: Router, private authService: AuthService, private userService: UserService) {
+    }
 
     ngOnInit() {
         this.authService.isUserLoggedIn().subscribe(user => {
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
         }, error => {
             console.error(error);
             localStorage.setItem('user', JSON.stringify('null'));
+            localStorage.setItem('cred', JSON.stringify('null'));
         })
     }
 }

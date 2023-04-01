@@ -23,8 +23,10 @@ export class LoginComponent {
 
     async login() {
         this.authService.login(String(this.loginForm.get('email')?.value), String(this.loginForm.get('password')?.value)).then(cred => {
+            localStorage.setItem('cred', JSON.stringify(cred));
             this.router.navigateByUrl('/books');
         }).catch(error => {
+            localStorage.setItem('cred', JSON.stringify('null'));
             console.error(error);
             //TODO
         });

@@ -1,0 +1,104 @@
+.card-container {
+    .flex-container {
+        display: flex;
+
+        .cover-image {
+            height: 200px;
+        }
+
+        .mat-mdc-card-header {
+            padding: 10px;
+        }
+
+        .mat-mdc-card-content {
+            width: 100%;
+        }
+
+        .card-content-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .card-left {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .book-title {
+                    font-size: 24px;
+                }
+            }
+
+            .card-right {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 10px;
+
+                .book-cost {
+                    font-size: 24px;
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+                .add-to-cart-button {
+                    font-size: 16px;
+                    color: white;
+                }
+
+                .change-amount {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    .increase, .decrease {
+                        color: white;
+                        font-size: 24px;
+                        min-width: unset !important;
+                        width: 40px;
+                    }
+
+                    .amount-input {
+                        height: 32px;
+                        width: 40px;
+                        text-align: center;
+                        font-size: 16px;
+                    }
+
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    /* Firefox */
+                    input[type=number] {
+                        -moz-appearance: textfield;
+                    }
+                }
+            }
+
+        }
+    }
+
+    &:hover {
+        background-color: #e5e5e5;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .card-content-container {
+        flex-direction: column;
+
+        .change-amount {
+            justify-content: right;
+        }
+
+        .release-date-label {
+            display: none;
+        }
+    }
+}

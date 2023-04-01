@@ -21,9 +21,14 @@
             justify-content: center;
             gap: 30px;
 
+            .login-button {
+                color: white;
+            }
+
             button {
                 font-size: 20px;
                 padding: 25px;
+                letter-spacing: normal;
             }
         }
     }

@@ -1,0 +1,30 @@
+<mat-card class="card-container" *ngIf="book?.title?.toLowerCase()?.includes(searchTerm)">
+    <div class="flex-container">
+        <mat-card-header>
+            <img mat-card-image class="cover-image" [src]="loadedImage" [alt]="book?.title"/>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="card-content-container">
+                <div class="card-left">
+                    <mat-card-title class="book-title">{{book?.title}}</mat-card-title>
+                    <mat-card-subtitle>{{book?.author}}</mat-card-subtitle>
+                    <mat-card-subtitle><span
+                        class="release-date-label">Release date:</span> {{book?.releaseDate | dateFormat}}
+                    </mat-card-subtitle>
+                </div>
+                <div class="card-right">
+                    <span class="book-cost">${{book?.cost?.toFixed(2)}}</span>
+                    <button class="add-to-cart-button" *ngIf="user && !inCartAmount" mat-raised-button color="primary" type="button" (click)="emitAddToCart()">
+                        Add to cart
+                    </button>
+                    <div class="change-amount" *ngIf="user && inCartAmount">
+                        <button class="decrease" mat-raised-button color="primary" type="button" (click)="emitDecrease()">-</button>
+                        <input class="amount-input" matInput type="number" readonly [(ngModel)]="inCartAmount"/>
+                        <button class="increase" mat-raised-button color="primary" type="button" (click)="emitIncrease()">+</button>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </div>
+</mat-card>
+

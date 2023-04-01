@@ -1,6 +1,12 @@
 <mat-nav-list class="sidenav">
+    <a mat-list-item routerLink="/nooks" (click)="closeSideNav()">
+        <div class="list-item-container">
+            <mat-icon>auto_stories</mat-icon>
+            <span>Books</span>
+        </div>
+    </a>
     <a mat-list-item routerLink="/login" (click)="closeSideNav()" *ngIf="!user">
-        <div class="list-item-container" >
+        <div class="list-item-container">
             <mat-icon>login</mat-icon>
             <span>Login</span>
         </div>

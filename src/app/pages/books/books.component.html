@@ -1,1 +1,7 @@
-<p>books works!</p>
+<div class="book-list-container">
+    <div class="searchbar">
+        <input class="search-input" [(ngModel)]="searchTerm" type="text" placeholder="Search for a title..."/>
+    </div>
+    <app-card *ngFor="let book of books; let i = index;" [book]="book" [searchTerm]="searchTerm" [shoppingCartItems]="shoppingCartItemsOfUser"
+              (addToCartEmitter)="addToCart($event)" (increaseEmitter)="increaseAmount($event)" (decreaseEmitter)="decreaseAmount($event)"></app-card>
+</div>

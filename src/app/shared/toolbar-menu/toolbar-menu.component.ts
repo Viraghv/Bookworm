@@ -10,17 +10,18 @@ import {UserService} from "../services/user.service";
     templateUrl: './toolbar-menu.component.html',
     styleUrls: ['./toolbar-menu.component.scss']
 })
-export class ToolbarMenuComponent implements OnChanges{
+export class ToolbarMenuComponent implements OnChanges {
     @Input() user?: firebase.default.User | null;
     @Input() sidenav: MatSidenav | undefined;
 
     username?: string;
     admin?: boolean;
 
-    constructor(private router: Router, private authService: AuthService, private userService: UserService) { }
+    constructor(private router: Router, private authService: AuthService, private userService: UserService) {
+    }
 
     ngOnChanges() {
-        if(this.user){
+        if (this.user) {
             this.userService.getById(this.user?.uid).subscribe(user => {
                 this.username = user?.username;
                 this.admin = user?.admin;
@@ -32,9 +33,10 @@ export class ToolbarMenuComponent implements OnChanges{
         this.sidenav?.toggle();
     }
 
-    logout(){
+    logout() {
         this.authService.logout().then(() => {
             console.log('Logged out successfully.');
+            localStorage.setItem('cred', JSON.stringify('null'));
             this.router.navigateByUrl('/books');
         }).catch(error => {
             console.error(error);

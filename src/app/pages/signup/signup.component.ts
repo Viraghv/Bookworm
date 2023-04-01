@@ -36,8 +36,8 @@ export class SignupComponent {
     }
 
     onSubmit() {
-        if(this.signUpForm.valid){
-            if(this.signUpForm.get("password")?.value === this.signUpForm.get("rePassword")?.value){
+        if (this.signUpForm.valid) {
+            if (this.signUpForm.get("password")?.value === this.signUpForm.get("rePassword")?.value) {
                 this.authService.signup(String(this.signUpForm.get('email')?.value), String(this.signUpForm.get('password')?.value)).then(cred => {
 
                     const user: User = {

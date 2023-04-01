@@ -23,7 +23,7 @@ import {SidenavMenuComponent} from './shared/sidenav-menu/sidenav-menu.component
     declarations: [
         AppComponent,
         ToolbarMenuComponent,
-        SidenavMenuComponent
+        SidenavMenuComponent,
     ],
     imports: [
         BrowserModule,
