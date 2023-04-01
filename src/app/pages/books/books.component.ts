@@ -31,9 +31,12 @@ export class BooksComponent implements OnInit {
         this.bookService.getAll().subscribe(books => {
             this.books = books;
         });
-        this.shoppingCartItemService.getAllByUserId(this.user.uid).subscribe(shoppingCartItems => {
-            this.shoppingCartItemsOfUser = shoppingCartItems;
-        })
+
+        if(this.user) {
+            this.shoppingCartItemService.getAllByUserId(this.user.uid).subscribe(shoppingCartItems => {
+                this.shoppingCartItemsOfUser = shoppingCartItems;
+            })
+        }
     }
 
     addToCart(book: Book){

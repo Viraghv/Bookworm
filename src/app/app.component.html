@@ -1,10 +1,10 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
-        <app-sidenav-menu [user]="loggedInUser" [sidenav]="sidenav"></app-sidenav-menu>
+        <app-sidenav-menu [user]="loggedInUser" [sidenav]="sidenav" [cartNumber]="cartNumber"></app-sidenav-menu>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="page">
-            <app-toolbar-menu [user]="loggedInUser" [sidenav]="sidenav"></app-toolbar-menu>
+            <app-toolbar-menu [user]="loggedInUser" [sidenav]="sidenav" [cartNumber]="cartNumber"></app-toolbar-menu>
             <div class="content">
                 <router-outlet></router-outlet>
             </div>

@@ -13,6 +13,7 @@ import {UserService} from "../services/user.service";
 export class ToolbarMenuComponent implements OnChanges {
     @Input() user?: firebase.default.User | null;
     @Input() sidenav: MatSidenav | undefined;
+    @Input() cartNumber: number = 0;
 
     username?: string;
     admin?: boolean;
