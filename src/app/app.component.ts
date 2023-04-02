@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
             this.loggedInUser = user;
             localStorage.setItem('user', JSON.stringify(user));
 
-            if(this.loggedInUser){
+            if (this.loggedInUser) {
                 this.shoppingCartItemService.getAllByUserId(this.loggedInUser.uid).subscribe(shoppingCartItems => {
                     this.cartNumber = 0;
                     for (let i = 0; i < shoppingCartItems.length; i++) {

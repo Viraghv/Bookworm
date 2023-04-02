@@ -43,4 +43,8 @@ export class ToolbarMenuComponent implements OnChanges {
             console.error(error);
         });
     }
+
+    navigateToCart() {
+        this.router.navigateByUrl('/shopping-cart');
+    }
 }

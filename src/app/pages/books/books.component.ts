@@ -22,7 +22,7 @@ export class BooksComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(JSON.parse(localStorage.getItem('user') as string)) {
+        if (JSON.parse(localStorage.getItem('user') as string)) {
             this.user = JSON.parse(localStorage.getItem('user') as string)
         } else {
             this.user = JSON.parse(localStorage.getItem('cred') as string)?.user;
@@ -32,14 +32,14 @@ export class BooksComponent implements OnInit {
             this.books = books;
         });
 
-        if(this.user) {
+        if (this.user) {
             this.shoppingCartItemService.getAllByUserId(this.user.uid).subscribe(shoppingCartItems => {
                 this.shoppingCartItemsOfUser = shoppingCartItems;
             })
         }
     }
 
-    addToCart(book: Book){
+    addToCart(book: Book) {
         const user = JSON.parse(localStorage.getItem('user') as string);
         let newShoppingCartItem: ShoppingCartItem = {
             userId: user.uid,
@@ -52,7 +52,7 @@ export class BooksComponent implements OnInit {
         });
     }
 
-    increaseAmount(shoppingCartItem: ShoppingCartItem){
+    increaseAmount(shoppingCartItem: ShoppingCartItem) {
         let amount = shoppingCartItem.amount + 1;
 
         this.shoppingCartItemService.update(String(shoppingCartItem.id), amount).then().catch(error => {
@@ -60,10 +60,10 @@ export class BooksComponent implements OnInit {
         });
     }
 
-    decreaseAmount(shoppingCartItem: ShoppingCartItem){
+    decreaseAmount(shoppingCartItem: ShoppingCartItem) {
         let amount = shoppingCartItem.amount - 1;
 
-        if(amount > 0){
+        if (amount > 0) {
             this.shoppingCartItemService.update(String(shoppingCartItem.id), amount).then().catch(error => {
                 console.log(error);
             });

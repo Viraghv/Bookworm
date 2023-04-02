@@ -9,7 +9,8 @@ export class ShoppingCartItemService {
 
     collectionName = "ShoppingCartItems"
 
-    constructor(private afs: AngularFirestore) {}
+    constructor(private afs: AngularFirestore) {
+    }
 
     create(shoppingCartItem: ShoppingCartItem) {
         shoppingCartItem.id = this.afs.createId();

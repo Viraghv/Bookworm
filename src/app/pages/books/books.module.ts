@@ -24,6 +24,9 @@ import {FormsModule} from "@angular/forms";
         MatButtonModule,
         MatInputModule,
         FormsModule,
+    ],
+    exports: [
+        DateFormatPipe,
     ]
 })
 export class BooksModule {

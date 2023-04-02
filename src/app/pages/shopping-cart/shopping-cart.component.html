@@ -1,0 +1,75 @@
+<div class="shopping-cart-container">
+    <h1 class="shopping-cart-title">Your shopping cart:</h1>
+    <app-shopping-cart-item *ngFor="let item of shoppingCartItemsOfUser; let i = index;"
+                            [shoppingCartItem]="item"
+                            (increaseEmitter)="increaseAmount($event)"
+                            (decreaseEmitter)="decreaseAmount($event)"
+                            (deleteEmitter)="deleteItem($event)">
+    </app-shopping-cart-item>
+    <p class="empty-message" *ngIf="!shoppingCartItemsOfUser.length">Your cart is empty.</p>
+
+    <div class="order-form-container" *ngIf="shoppingCartItemsOfUser.length">
+        <h1 class="order-form-title">Order:</h1>
+        <form class="order-form" [formGroup]="orderFormGroup" (ngSubmit)="onOrderSubmit()">
+            <div class="row-one">
+                <mat-form-field>
+                    <mat-label>Firstname</mat-label>
+                    <input matInput type="text" formControlName="firstname">
+                    <mat-error *ngIf="orderFormGroup.get('firstname')?.hasError('required')">
+                        This field is required.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Lastname</mat-label>
+                    <input matInput type="text" formControlName="lastname">
+                    <mat-error *ngIf="orderFormGroup.get('lastname')?.hasError('required')">
+                        This field is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row-two">
+                <mat-form-field>
+                    <mat-label>Zip code</mat-label>
+                    <input matInput type="text" formControlName="zipCode">
+                    <mat-error *ngIf="orderFormGroup.get('zipCode')?.hasError('required')">
+                        This field is required.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput type="text" formControlName="address">
+                    <mat-error *ngIf="orderFormGroup.get('address')?.hasError('required')">
+                        This field is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row-three">
+                <mat-form-field>
+                    <mat-label>Phone number</mat-label>
+                    <input matInput type="text" formControlName="phoneNumber">
+                    <mat-error
+                        *ngIf="orderFormGroup.get('phoneNumber')?.hasError('pattern') && !orderFormGroup.get('phoneNumber')?.hasError('required')">
+                        Please enter a valid phone number.
+                    </mat-error>
+                    <mat-error *ngIf="orderFormGroup.get('phoneNumber')?.hasError('required')">
+                        This field is required.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Payment type</mat-label>
+                    <mat-select formControlName="paymentType">
+                        <mat-option *ngFor="let payment of paymentTypes" [value]="payment.value">
+                            {{payment.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="orderFormGroup.get('paymentType')?.hasError('required')">
+                        This field is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="submit-container">
+                <button class="submit-button" mat-raised-button color="primary" type="submit">Place order</button>
+            </div>
+        </form>
+    </div>
+</div>

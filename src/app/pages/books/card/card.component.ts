@@ -2,7 +2,6 @@ import {Component, Input, OnInit, OnChanges, Output, EventEmitter} from '@angula
 import {Book} from "../../../shared/models/Book";
 import {BookService} from "../../../shared/services/book.service";
 import {ShoppingCartItem} from "../../../shared/models/ShoppingCartItem";
-import {changeToData} from "@angular/fire/database";
 
 @Component({
     selector: 'app-card',
@@ -33,7 +32,7 @@ export class CardComponent implements OnInit, OnChanges {
             this.loadedImage = data;
         });
         for (let i = 0; i < this.shoppingCartItems.length; i++) {
-            if(this.shoppingCartItems[i].bookId === this.book?.id) {
+            if (this.shoppingCartItems[i].bookId === this.book?.id) {
                 this.inCartAmount = this.shoppingCartItems[i].amount;
                 this.shoppingCartItem = this.shoppingCartItems[i];
                 break;
@@ -45,7 +44,7 @@ export class CardComponent implements OnInit, OnChanges {
         this.inCartAmount = 0;
         this.user = JSON.parse(localStorage.getItem('user') as string);
         for (let i = 0; i < this.shoppingCartItems.length; i++) {
-            if(this.shoppingCartItems[i].bookId === this.book?.id) {
+            if (this.shoppingCartItems[i].bookId === this.book?.id) {
                 this.inCartAmount = this.shoppingCartItems[i].amount;
                 this.shoppingCartItem = this.shoppingCartItems[i];
                 break;
@@ -53,7 +52,7 @@ export class CardComponent implements OnInit, OnChanges {
         }
     }
 
-    emitAddToCart(){
+    emitAddToCart() {
         this.addToCartEmitter.emit(this.book);
     }
 

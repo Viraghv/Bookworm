@@ -17,8 +17,9 @@
             <span>Logged in: </span>
             <span class="user-name">{{username}}</span>
         </div>
-        <button mat-icon-button *ngIf="user">
-            <mat-icon [matBadge]="cartNumber" matBadgePosition="after" matBadgeColor="accent" matBadgeSize="medium">
+        <button mat-icon-button *ngIf="user" (click)="navigateToCart()">
+            <mat-icon class="cart-icon" [matBadge]="cartNumber" matBadgePosition="after" matBadgeColor="accent"
+                      matBadgeSize="medium">
                 shopping_cart
             </mat-icon>
         </button>

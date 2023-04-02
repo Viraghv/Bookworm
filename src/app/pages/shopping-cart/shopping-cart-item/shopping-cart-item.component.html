@@ -1,4 +1,4 @@
-<mat-card class="card-container" *ngIf="book?.title?.toLowerCase()?.includes(searchTerm)">
+<mat-card class="card-container">
     <div class="flex-container">
         <mat-card-header>
             <img mat-card-image class="cover-image" src="assets/no_cover_available.png" *ngIf="!loadedImage"
@@ -16,17 +16,19 @@
                 </div>
                 <div class="card-right">
                     <span class="book-cost">${{book?.cost?.toFixed(2)}}</span>
-                    <button class="add-to-cart-button" *ngIf="user && !inCartAmount" mat-raised-button color="primary"
-                            type="button" (click)="emitAddToCart()">
-                        Add to cart
-                    </button>
-                    <div class="change-amount" *ngIf="user && inCartAmount">
+                    <div class="change-amount">
                         <button class="decrease" mat-raised-button color="primary" type="button"
                                 (click)="emitDecrease()">-
                         </button>
-                        <input class="amount-input" matInput type="number" readonly [(ngModel)]="inCartAmount"/>
+                        <input class="amount-input" matInput type="number" readonly
+                               value="{{shoppingCartItem?.amount}}"/>
                         <button class="increase" mat-raised-button color="primary" type="button"
                                 (click)="emitIncrease()">+
+                        </button>
+                    </div>
+                    <div class="delete-container">
+                        <button class="delete" mat-raised-button color="accent" type="button" (click)="emitDelete()">
+                            Delete
                         </button>
                     </div>
                 </div>

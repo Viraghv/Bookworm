@@ -1,4 +1,8 @@
 <mat-nav-list class="sidenav">
+    <div class="logged-in-user" *ngIf="user">
+        <span>Logged in: </span>
+        <span class="name">{{username}}</span>
+    </div>
     <a mat-list-item routerLink="/nooks" (click)="closeSideNav()">
         <div class="list-item-container">
             <mat-icon>auto_stories</mat-icon>
@@ -11,22 +15,10 @@
             <span>Login</span>
         </div>
     </a>
-    <a mat-list-item (click)="logout()" *ngIf="user">
-        <div class="list-item-container">
-            <mat-icon>logout</mat-icon>
-            <span>Logout</span>
-        </div>
-    </a>
     <a mat-list-item routerLink="/signup" (click)="closeSideNav()" *ngIf="!user">
         <div class="list-item-container">
             <mat-icon>app_registration</mat-icon>
             <span>Register</span>
-        </div>
-    </a>
-    <a mat-list-item routerLink="/admin" (click)="closeSideNav()" *ngIf="user && admin">
-        <div class="list-item-container">
-            <mat-icon>lock</mat-icon>
-            <span>Admin</span>
         </div>
     </a>
     <a mat-list-item routerLink="/shopping-cart" (click)="closeSideNav()" *ngIf="user">
@@ -37,8 +29,16 @@
             <span>Shopping cart ({{cartNumber}})</span>
         </div>
     </a>
-    <div class="logged-in-user" *ngIf="user">
-        <span>Logged in: </span>
-        <span class="name">{{username}}</span>
-    </div>
+    <a mat-list-item routerLink="/admin" (click)="closeSideNav()" *ngIf="user && admin">
+        <div class="list-item-container">
+            <mat-icon>lock</mat-icon>
+            <span>Admin</span>
+        </div>
+    </a>
+    <a mat-list-item (click)="logout()" *ngIf="user">
+        <div class="list-item-container">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </div>
+    </a>
 </mat-nav-list>
