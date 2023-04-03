@@ -18,17 +18,22 @@ export class LoginComponent {
         ]),
     });
 
+    loginErrorMessages: Array<string> = [];
+
     constructor(private authService: AuthService, private router: Router) {
     }
 
-    async login() {
+    login() {
+        this.loginErrorMessages = [];
         this.authService.login(String(this.loginForm.get('email')?.value), String(this.loginForm.get('password')?.value)).then(cred => {
             localStorage.setItem('cred', JSON.stringify(cred));
             this.router.navigateByUrl('/books');
         }).catch(error => {
             localStorage.setItem('cred', JSON.stringify('null'));
-            console.error(error);
-            //TODO
+
+            if(error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email'){
+                this.loginErrorMessages.push('Invalid email or password.')
+            }
         });
     }
 }

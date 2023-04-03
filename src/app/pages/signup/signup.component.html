@@ -4,19 +4,49 @@
         <mat-form-field>
             <mat-label>Username:</mat-label>
             <input matInput type="text" formControlName="username">
+            <mat-error *ngIf="signUpForm.get('username')?.hasError('required')">
+                This field is required.
+            </mat-error>
+            <mat-error *ngIf="signUpForm.get('username')?.hasError('minlength') && !signUpForm.get('username')?.hasError('required')">
+                Username must be at least 4 characters long.
+            </mat-error>
+            <mat-error *ngIf="signUpForm.get('username')?.hasError('maxlength')">
+               Username can't be longer than 30 characters.
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Email:</mat-label>
             <input matInput type="text" formControlName="email">
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+                This field is required.
+            </mat-error>
+            <mat-error *ngIf="signUpForm.get('email')?.hasError('email') && !signUpForm.get('email')?.hasError('required')">
+                Please enter a valid email address.
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Password:</mat-label>
             <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+                This field is required.
+            </mat-error>
+            <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength') && !signUpForm.get('password')?.hasError('required')">
+                Password must be at least 4 characters long.
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Password again:</mat-label>
             <input matInput type="password" formControlName="rePassword">
+            <mat-error *ngIf="signUpForm.get('rePassword')?.hasError('required')">
+                This field is required.
+            </mat-error>
+            <mat-error *ngIf="signUpForm.get('rePassword')?.hasError('minlength') && !signUpForm.get('rePassword')?.hasError('required')">
+                Password must be at least 4 characters long.
+            </mat-error>
         </mat-form-field>
+        <div class="error-messages" *ngIf="registrationErrorMessages.length">
+            <p *ngFor="let errorMessage of registrationErrorMessages">{{errorMessage}}</p>
+        </div>
         <div class="buttons">
             <button class="register-button" mat-raised-button color="primary" type="submit">Register</button>
             <button mat-raised-button type="button" [routerLink]="'/login'">Go to login</button>

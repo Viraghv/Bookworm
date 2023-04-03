@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent {
+export class SignupComponent  {
 
     signUpForm = new FormGroup({
         username: new FormControl('', [
@@ -32,10 +32,14 @@ export class SignupComponent {
         ]),
     });
 
+    registrationErrorMessages: Array<string> = [];
+
     constructor(private authService: AuthService, private userService: UserService, private router: Router,) {
     }
 
+
     onSubmit() {
+        this.registrationErrorMessages = [];
         if (this.signUpForm.valid) {
             if (this.signUpForm.get("password")?.value === this.signUpForm.get("rePassword")?.value) {
                 this.authService.signup(String(this.signUpForm.get('email')?.value), String(this.signUpForm.get('password')?.value)).then(cred => {
@@ -51,17 +55,16 @@ export class SignupComponent {
                     }).catch(error => {
                         console.error(error);
                     });
+                }).catch(error => {
+                    if(error.code === "auth/email-already-in-use"){
+                        this.registrationErrorMessages.push("Email address already in use.")
+                    } else {
+                        console.error(error);
+                    }
                 });
             } else {
-                console.log("Jelszavak nem egyeznek.")
-                //TODO
+                this.registrationErrorMessages.push("Passwords do not match.");
             }
-        } else {
-            //TODO
         }
-
-
     }
-
-
 }
