@@ -31,7 +31,7 @@ export class LoginComponent {
         }).catch(error => {
             localStorage.setItem('cred', JSON.stringify('null'));
 
-            if(error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email'){
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email') {
                 this.loginErrorMessages.push('Invalid email or password.')
             }
         });

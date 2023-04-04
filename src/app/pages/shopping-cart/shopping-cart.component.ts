@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {BookService} from "../../shared/services/book.service";
 import {ShoppingCartItemService} from "../../shared/services/shopping-cart-item.service";
 import {ShoppingCartItem} from "../../shared/models/ShoppingCartItem";
-import {FormControl, FormGroup, FormGroupDirective, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Order} from "../../shared/models/Order";
 import {OrderService} from "../../shared/services/order.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-shopping-cart',
     templateUrl: './shopping-cart.component.html',
     styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
 
     shoppingCartItemsOfUser: Array<ShoppingCartItem> = [];
     user?: any;
@@ -55,6 +56,8 @@ export class ShoppingCartComponent implements OnInit {
         },
     ];
 
+    shoppingCartItemsSubscription?: Subscription;
+
     constructor(private bookService: BookService, private shoppingCartItemService: ShoppingCartItemService,
                 private orderService: OrderService, private _snackBar: MatSnackBar,
                 private router: Router) {
@@ -67,7 +70,7 @@ export class ShoppingCartComponent implements OnInit {
             this.user = JSON.parse(localStorage.getItem('cred') as string)?.user;
         }
 
-        this.shoppingCartItemService.getAllByUserId(this.user.uid).subscribe(shoppingCartItems => {
+        this.shoppingCartItemsSubscription = this.shoppingCartItemService.getAllByUserId(this.user.uid).subscribe(shoppingCartItems => {
             this.shoppingCartItemsOfUser = shoppingCartItems;
         })
     }
@@ -101,7 +104,7 @@ export class ShoppingCartComponent implements OnInit {
     }
 
     async onOrderSubmit() {
-        if(this.orderFormGroup.valid){
+        if (this.orderFormGroup.valid) {
             try {
                 while (this.shoppingCartItemsOfUser.length != 0) {
                     let order: Order = {
@@ -126,6 +129,10 @@ export class ShoppingCartComponent implements OnInit {
                 console.log(error)
             }
         }
+    }
+
+    ngOnDestroy() {
+        this.shoppingCartItemsSubscription?.unsubscribe();
     }
 
 }

@@ -1,22 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {BookService} from "../../shared/services/book.service";
 import {Book} from "../../shared/models/Book";
 import {ShoppingCartItem} from "../../shared/models/ShoppingCartItem";
 import {ShoppingCartItemService} from "../../shared/services/shopping-cart-item.service";
-import {error} from "@angular/compiler-cli/src/transformers/util";
+import { Subscription } from 'rxjs';
+
 
 @Component({
     selector: 'app-books',
     templateUrl: './books.component.html',
     styleUrls: ['./books.component.scss']
 })
-export class BooksComponent implements OnInit {
+export class BooksComponent implements OnInit, OnDestroy {
 
     books: Array<Book> = [];
     shoppingCartItemsOfUser: Array<ShoppingCartItem> = [];
     searchTerm: string = "";
     user?: any;
 
+    bookSubscription?: Subscription;
 
     constructor(private bookService: BookService, private shoppingCartItemService: ShoppingCartItemService) {
     }
@@ -28,7 +30,7 @@ export class BooksComponent implements OnInit {
             this.user = JSON.parse(localStorage.getItem('cred') as string)?.user;
         }
 
-        this.bookService.getAll().subscribe(books => {
+        this.bookSubscription = this.bookService.getAll().subscribe(books => {
             this.books = books;
         });
 
@@ -43,7 +45,7 @@ export class BooksComponent implements OnInit {
         const user = JSON.parse(localStorage.getItem('user') as string);
         let newShoppingCartItem: ShoppingCartItem = {
             userId: user.uid,
-            bookId: book.id,
+            bookId: String(book.id),
             amount: 1,
         }
 
@@ -72,6 +74,10 @@ export class BooksComponent implements OnInit {
                 console.log(error);
             });
         }
+    }
+
+    ngOnDestroy() {
+        this.bookSubscription?.unsubscribe();
     }
 
 }

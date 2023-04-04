@@ -13,8 +13,9 @@ export class BookService {
     constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {
     }
 
-    create(book: Book) {
+    create(book: Book, coverImage: File | null | undefined) {
         book.id = this.afs.createId();
+        this.storage.upload(book.imageUrl, coverImage);
         return this.afs.collection<Book>(this.collectionName).doc(book.id).set(book);
     }
 
@@ -26,7 +27,11 @@ export class BookService {
         return this.afs.collection<Book>(this.collectionName, ref => ref.orderBy("title")).valueChanges();
     }
 
-    update(book: Book) {
+    async update(book: Book, coverImage: File | null | undefined, previousImagePath: string | null | undefined) {
+        if (coverImage && previousImagePath) {
+            await this.storage.storage.ref(previousImagePath).delete();
+            await this.storage.upload(book.imageUrl, coverImage);
+        }
         return this.afs.collection<Book>(this.collectionName).doc(book.id).set(book);
     }
 
@@ -36,6 +41,6 @@ export class BookService {
 
     loadImage(imageUrl: string) {
         return this.storage.ref(imageUrl).getDownloadURL();
-
     }
+
 }

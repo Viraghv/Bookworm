@@ -7,11 +7,12 @@
             <mat-error *ngIf="signUpForm.get('username')?.hasError('required')">
                 This field is required.
             </mat-error>
-            <mat-error *ngIf="signUpForm.get('username')?.hasError('minlength') && !signUpForm.get('username')?.hasError('required')">
+            <mat-error
+                *ngIf="signUpForm.get('username')?.hasError('minlength') && !signUpForm.get('username')?.hasError('required')">
                 Username must be at least 4 characters long.
             </mat-error>
             <mat-error *ngIf="signUpForm.get('username')?.hasError('maxlength')">
-               Username can't be longer than 30 characters.
+                Username can't be longer than 30 characters.
             </mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -20,7 +21,8 @@
             <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
                 This field is required.
             </mat-error>
-            <mat-error *ngIf="signUpForm.get('email')?.hasError('email') && !signUpForm.get('email')?.hasError('required')">
+            <mat-error
+                *ngIf="signUpForm.get('email')?.hasError('email') && !signUpForm.get('email')?.hasError('required')">
                 Please enter a valid email address.
             </mat-error>
         </mat-form-field>
@@ -30,7 +32,8 @@
             <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
                 This field is required.
             </mat-error>
-            <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength') && !signUpForm.get('password')?.hasError('required')">
+            <mat-error
+                *ngIf="signUpForm.get('password')?.hasError('minlength') && !signUpForm.get('password')?.hasError('required')">
                 Password must be at least 4 characters long.
             </mat-error>
         </mat-form-field>
@@ -40,7 +43,8 @@
             <mat-error *ngIf="signUpForm.get('rePassword')?.hasError('required')">
                 This field is required.
             </mat-error>
-            <mat-error *ngIf="signUpForm.get('rePassword')?.hasError('minlength') && !signUpForm.get('rePassword')?.hasError('required')">
+            <mat-error
+                *ngIf="signUpForm.get('rePassword')?.hasError('minlength') && !signUpForm.get('rePassword')?.hasError('required')">
                 Password must be at least 4 characters long.
             </mat-error>
         </mat-form-field>

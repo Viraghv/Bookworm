@@ -27,6 +27,7 @@ import {FormsModule} from "@angular/forms";
     ],
     exports: [
         DateFormatPipe,
+        BooksComponent,
     ]
 })
 export class BooksModule {

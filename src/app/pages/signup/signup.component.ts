@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent  {
+export class SignupComponent {
 
     signUpForm = new FormGroup({
         username: new FormControl('', [
@@ -56,7 +56,7 @@ export class SignupComponent  {
                         console.error(error);
                     });
                 }).catch(error => {
-                    if(error.code === "auth/email-already-in-use"){
+                    if (error.code === "auth/email-already-in-use") {
                         this.registrationErrorMessages.push("Email address already in use.")
                     } else {
                         console.error(error);

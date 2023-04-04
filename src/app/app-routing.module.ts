@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from "./shared/guards/auth.guard";
+import {AdminAuthGuard} from "./shared/guards/admin-auth.guard";
 
 const routes: Routes = [
     {
@@ -20,6 +21,11 @@ const routes: Routes = [
         loadChildren: () => import('./pages/shopping-cart/shopping-cart.module').then(m => m.ShoppingCartModule),
         canActivate: [AuthGuard],
 
+    },
+    {
+        path: 'admin',
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+        canActivate: [AdminAuthGuard]
     },
     {
         path: '**',

@@ -4,6 +4,8 @@
 
         .cover-image {
             height: 200px;
+            max-width: 135px;
+            object-fit: cover;
         }
 
         .mat-mdc-card-header {

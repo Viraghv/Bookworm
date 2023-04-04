@@ -1,0 +1,54 @@
+<div class="upload-container">
+    <h1 class="title" *ngIf="!bookId">Upload book</h1>
+    <h1 class="title" *ngIf="bookId">Edit book</h1>
+
+    <form class="upload-form" [formGroup]="uploadBookForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput type="text" formControlName="title">
+            <mat-error *ngIf="uploadBookForm.get('title')?.hasError('required')">
+                This field is required.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Author</mat-label>
+            <input matInput type="text" formControlName="author">
+            <mat-error *ngIf="uploadBookForm.get('author')?.hasError('required')">
+                This field is required.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Cost ($)</mat-label>
+            <input matInput type="number" formControlName="cost">
+            <mat-error *ngIf="uploadBookForm.get('cost')?.hasError('required')">
+                This field is required.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Release date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="releaseDate">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="uploadBookForm.get('releaseDate')?.hasError('required')">
+                This field is required.
+            </mat-error>
+        </mat-form-field>
+        <div class="image-input-container">
+            <label class="image-input-label" for="image-input">
+                Upload <span *ngIf="bookId">new</span> cover image
+            </label>
+            <span class="image-name" *ngIf="coverImage">{{coverImage.name}}</span>
+            <input id="image-input" type="file" (change)="setBookCoverImage($event)"/>
+        </div>
+        <div class="error-messages" *ngIf="imageErrors.length">
+            <ul>
+                <li *ngFor="let errorMessage of imageErrors">{{errorMessage}}</li>
+            </ul>
+        </div>
+        <div class="buttons">
+            <button class="upload-button" *ngIf="!bookId" mat-raised-button color="primary" type="submit">Upload</button>
+            <button class="upload-button" *ngIf="bookId" mat-raised-button color="primary" type="submit">Edit</button>
+        </div>
+    </form>
+</div>
