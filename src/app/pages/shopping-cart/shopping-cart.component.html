@@ -7,7 +7,6 @@
                             (deleteEmitter)="deleteItem($event)">
     </app-shopping-cart-item>
     <p class="empty-message" *ngIf="!shoppingCartItemsOfUser.length">Your cart is empty.</p>
-
     <div class="order-form-container" *ngIf="shoppingCartItemsOfUser.length">
         <h1 class="order-form-title">Order:</h1>
         <form class="order-form" [formGroup]="orderFormGroup" (ngSubmit)="onOrderSubmit()">

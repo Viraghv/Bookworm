@@ -64,13 +64,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        console.log("init")
         if (JSON.parse(localStorage.getItem('user') as string)) {
             this.user = JSON.parse(localStorage.getItem('user') as string)
         } else {
             this.user = JSON.parse(localStorage.getItem('cred') as string)?.user;
         }
 
-        this.shoppingCartItemsSubscription = this.shoppingCartItemService.getAllByUserId(this.user.uid).subscribe(shoppingCartItems => {
+        this.shoppingCartItemsSubscription = this.shoppingCartItemService.getAllByUserId(this.user.uid).subscribe(async shoppingCartItems => {
             this.shoppingCartItemsOfUser = shoppingCartItems;
         })
     }

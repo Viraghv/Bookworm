@@ -35,8 +35,9 @@ export class BookService {
         return this.afs.collection<Book>(this.collectionName).doc(book.id).set(book);
     }
 
-    delete(id: string) {
-        return this.afs.collection<Book>(this.collectionName).doc(id).delete();
+    async delete(book: Book) {
+        await this.storage.storage.ref(book.imageUrl).delete();
+        return this.afs.collection<Book>(this.collectionName).doc(book.id).delete();
     }
 
     loadImage(imageUrl: string) {

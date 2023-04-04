@@ -1,0 +1,23 @@
+.table-row {
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.edit-icon, .delete-icon {
+    &:hover {
+        cursor: pointer;
+        color: #f06292;
+    }
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+    color: white;
+}
+
+.add-book-button {
+    color: white;
+    letter-spacing: normal;
+    margin-bottom: 15px;
+    margin-top: 20px;
+}

@@ -7,6 +7,10 @@ import {UsersComponent} from './users/users.component';
 import {BooksComponent} from './books/books.component';
 import {OrdersComponent} from './orders/orders.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatTableModule} from "@angular/material/table";
+import {BooksModule} from "../books/books.module";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import {MatTabsModule} from "@angular/material/tabs";
     imports: [
         CommonModule,
         AdminRoutingModule,
-        MatTabsModule
+        MatTabsModule,
+        MatTableModule,
+        BooksModule,
+        MatIconModule,
+        MatButtonModule
     ]
 })
 export class AdminModule {

@@ -89,7 +89,7 @@ export class UploadBookComponent implements OnInit{
                 }
 
                 this.bookService.update(book, this.coverImage, this.bookData.imageUrl).then( _ => {
-                    this.router.navigateByUrl("/books");
+                    this.router.navigateByUrl("/admin");
                 }).catch(error => {
                     console.error(error)
                 })
