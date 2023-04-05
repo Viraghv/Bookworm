@@ -25,8 +25,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
             this.loggedInUser = user;
             localStorage.setItem('user', JSON.stringify(user));
-
-            console.log(this.loggedInUser);
             if (this.loggedInUser) {
                 this.shoppingCartItemsSubscription = this.shoppingCartItemService.getAllByUserId(this.loggedInUser.uid).subscribe(shoppingCartItems => {
                     this.cartNumber = 0;
