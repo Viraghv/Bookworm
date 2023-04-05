@@ -61,7 +61,6 @@ export class UploadBookComponent implements OnInit{
                     author: String(this.uploadBookForm.get("author")?.value),
                     cost: Number(this.uploadBookForm.get("cost")?.value),
                     releaseDate: new Date(String(this.uploadBookForm.get("releaseDate")?.value)).getTime(),
-                    imageUrl: "book-covers/" + this.coverImage?.name,
                 }
 
                 this.bookService.create(book, this.coverImage).then(_ => {
@@ -74,7 +73,7 @@ export class UploadBookComponent implements OnInit{
             if(this.uploadBookForm.valid){
                 let bookNewUrl: string;
                 if(this.coverImage){
-                    bookNewUrl = "book-covers/" + this.coverImage?.name;
+                    bookNewUrl = "book-covers/" + this.bookId + '.' + this.coverImage?.name.split('.')[1];
                 } else {
                     bookNewUrl = this.bookData?.imageUrl;
                 }

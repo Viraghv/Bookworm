@@ -15,7 +15,8 @@ export class BookService {
 
     create(book: Book, coverImage: File | null | undefined) {
         book.id = this.afs.createId();
-        this.storage.upload(book.imageUrl, coverImage);
+        book.imageUrl = "book-covers/" + book.id + '.' + coverImage?.name.split('.')[1];
+        this.storage.upload(String(book.imageUrl), coverImage);
         return this.afs.collection<Book>(this.collectionName).doc(book.id).set(book);
     }
 
@@ -30,7 +31,7 @@ export class BookService {
     async update(book: Book, coverImage: File | null | undefined, previousImagePath: string | null | undefined) {
         if (coverImage && previousImagePath) {
             await this.storage.storage.ref(previousImagePath).delete();
-            await this.storage.upload(book.imageUrl, coverImage);
+            await this.storage.upload(String(book.imageUrl), coverImage);
         }
         return this.afs.collection<Book>(this.collectionName).doc(book.id).set(book);
     }
