@@ -65,7 +65,7 @@ export class UploadBookComponent implements OnInit{
                 }
 
                 this.bookService.create(book, this.coverImage).then(_ => {
-                    this.router.navigateByUrl('/books');
+                    this.router.navigateByUrl('/admin');
                 }).catch(error => {
                     console.error(error);
                 })
