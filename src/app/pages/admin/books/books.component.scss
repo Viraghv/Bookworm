@@ -4,10 +4,18 @@
     }
 }
 
-.edit-icon, .delete-icon {
-    &:hover {
-        cursor: pointer;
-        color: #f06292;
+.actions-td {
+    white-space: nowrap;
+
+    .edit-icon, .delete-icon {
+        &:hover {
+            cursor: pointer;
+            color: #f06292;
+        }
+    }
+
+    .edit-icon {
+        margin-right: 10px;
     }
 }
 

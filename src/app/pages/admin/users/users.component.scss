@@ -1,0 +1,15 @@
+.table-row {
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.actions-td {
+    white-space: nowrap;
+
+    button {
+        color: white;
+        letter-spacing: normal;
+        width: 150px;
+    }
+}

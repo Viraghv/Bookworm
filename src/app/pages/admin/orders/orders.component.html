@@ -1,1 +1,58 @@
-<p>orders works!</p>
+<table mat-table [dataSource]="orders" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+        <th class="id-th" mat-header-cell *matHeaderCellDef> ID </th>
+        <td class="id-td" mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef> Firstname </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef> Lastname </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="zipCode">
+        <th mat-header-cell *matHeaderCellDef> Zip code </th>
+        <td mat-cell *matCellDef="let element"> {{element.zipCode}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef> Phone number </th>
+        <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="paymentType">
+        <th mat-header-cell *matHeaderCellDef> Payment type </th>
+        <td mat-cell *matCellDef="let element"> {{element.paymentType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookId">
+        <th mat-header-cell *matHeaderCellDef> Book ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.bookId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef> User ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="table-row" [ngStyle]="{'background-color' : i % 2 === 0 ? 'white' : '#def3df'}"  mat-row *matRowDef="let row; let i = index; columns: displayedColumns;"></tr>
+
+</table>
+
