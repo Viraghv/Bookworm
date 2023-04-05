@@ -22,11 +22,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.userLoggedInSubscription = this.authService.isUserLoggedIn().subscribe(user => {
+
             this.loggedInUser = user;
             localStorage.setItem('user', JSON.stringify(user));
 
+            console.log(this.loggedInUser);
             if (this.loggedInUser) {
-                this. shoppingCartItemsSubscription = this.shoppingCartItemService.getAllByUserId(this.loggedInUser.uid).subscribe(shoppingCartItems => {
+                this.shoppingCartItemsSubscription = this.shoppingCartItemService.getAllByUserId(this.loggedInUser.uid).subscribe(shoppingCartItems => {
                     this.cartNumber = 0;
                     for (let i = 0; i < shoppingCartItems.length; i++) {
                         this.cartNumber += shoppingCartItems[i].amount;

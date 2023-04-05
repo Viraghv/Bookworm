@@ -24,11 +24,11 @@ export class SignupComponent {
         ]),
         password: new FormControl('', [
             Validators.required,
-            Validators.minLength(4)
+            Validators.minLength(6)
         ]),
         rePassword: new FormControl('', [
             Validators.required,
-            Validators.minLength(4)
+            Validators.minLength(6)
         ]),
     });
 

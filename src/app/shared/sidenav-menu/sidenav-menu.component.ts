@@ -4,6 +4,7 @@ import {User} from "../models/User";
 import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {UserService} from "../services/user.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
     selector: 'app-sidenav-menu',
@@ -11,7 +12,7 @@ import {UserService} from "../services/user.service";
     styleUrls: ['./sidenav-menu.component.scss']
 })
 export class SidenavMenuComponent implements OnChanges {
-    @Input() user?: firebase.default.User | null;
+    @Input() loggedUser?: firebase.default.User | null;
     @Input() sidenav: MatSidenav | undefined;
     @Input() cartNumber: number = 0;
 
@@ -21,19 +22,21 @@ export class SidenavMenuComponent implements OnChanges {
     constructor(private router: Router, private authService: AuthService, private userService: UserService) {
     }
 
-    ngOnChanges() {
-        if (this.user) {
-            this.userService.getById(this.user?.uid).subscribe(user => {
-                this.username = user?.username;
-                this.admin = user?.admin;
-            });
+    async ngOnChanges() {
+        if (this.loggedUser) {
+            let source = this.userService.getById(this.loggedUser.uid)
+            const userData = await firstValueFrom(source)
+            this.username = userData?.username;
+            this.admin = userData?.admin;
         }
     }
 
     logout() {
         this.authService.logout().then(() => {
-            console.log('Logged out successfully.');
+            localStorage.setItem('user', JSON.stringify('null'));
             localStorage.setItem('cred', JSON.stringify('null'));
+            this.username = "";
+            this.admin = undefined;
             this.closeSideNav();
             this.router.navigateByUrl('/books');
         }).catch(error => {

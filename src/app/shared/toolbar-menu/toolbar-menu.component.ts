@@ -1,9 +1,10 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
 import {User} from "../models/User";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
+import {firstValueFrom, Subscription} from "rxjs";
 
 @Component({
     selector: 'app-toolbar-menu',
@@ -11,7 +12,7 @@ import {UserService} from "../services/user.service";
     styleUrls: ['./toolbar-menu.component.scss']
 })
 export class ToolbarMenuComponent implements OnChanges {
-    @Input() user?: firebase.default.User | null;
+    @Input() loggedUser?: firebase.default.User | null;
     @Input() sidenav: MatSidenav | undefined;
     @Input() cartNumber: number = 0;
 
@@ -21,12 +22,12 @@ export class ToolbarMenuComponent implements OnChanges {
     constructor(private router: Router, private authService: AuthService, private userService: UserService) {
     }
 
-    ngOnChanges() {
-        if (this.user) {
-            this.userService.getById(this.user?.uid).subscribe(user => {
-                this.username = user?.username;
-                this.admin = user?.admin;
-            });
+    async ngOnChanges() {
+        if (this.loggedUser) {
+            let source = this.userService.getById(this.loggedUser.uid)
+            const userData = await firstValueFrom(source)
+            this.username = userData?.username;
+            this.admin = userData?.admin;
         }
     }
 
@@ -36,8 +37,10 @@ export class ToolbarMenuComponent implements OnChanges {
 
     logout() {
         this.authService.logout().then(() => {
-            console.log('Logged out successfully.');
+            localStorage.setItem('user', JSON.stringify('null'));
             localStorage.setItem('cred', JSON.stringify('null'));
+            this.username = "";
+            this.admin = undefined;
             this.router.navigateByUrl('/books');
         }).catch(error => {
             console.error(error);
@@ -47,4 +50,5 @@ export class ToolbarMenuComponent implements OnChanges {
     navigateToCart() {
         this.router.navigateByUrl('/shopping-cart');
     }
+
 }

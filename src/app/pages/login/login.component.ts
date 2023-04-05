@@ -25,15 +25,18 @@ export class LoginComponent {
 
     login() {
         this.loginErrorMessages = [];
-        this.authService.login(String(this.loginForm.get('email')?.value), String(this.loginForm.get('password')?.value)).then(cred => {
-            localStorage.setItem('cred', JSON.stringify(cred));
-            this.router.navigateByUrl('/books');
-        }).catch(error => {
-            localStorage.setItem('cred', JSON.stringify('null'));
+        if(this.loginForm.valid){
+            this.authService.login(String(this.loginForm.get('email')?.value), String(this.loginForm.get('password')?.value)).then(cred => {
+                localStorage.setItem('cred', JSON.stringify(cred));
+                this.router.navigateByUrl('/books');
+            }).catch(error => {
+                localStorage.setItem('cred', JSON.stringify('null'));
 
-            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email') {
-                this.loginErrorMessages.push('Invalid email or password.')
-            }
-        });
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-email') {
+                    this.loginErrorMessages.push('Invalid email or password.')
+                }
+            });
+        }
+
     }
 }

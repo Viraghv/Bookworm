@@ -18,7 +18,7 @@ export class OrderService {
     }
 
     getAll() {
-        return this.afs.collection<Order>(this.collectionName).valueChanges();
+        return this.afs.collection<Order>(this.collectionName, ref => ref.orderBy("userId")).valueChanges();
     }
 
     update(order: Order) {

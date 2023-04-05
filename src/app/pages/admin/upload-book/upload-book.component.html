@@ -39,7 +39,7 @@
                 Upload <span *ngIf="bookId">new</span> cover image
             </label>
             <span class="image-name" *ngIf="coverImage">{{coverImage.name}}</span>
-            <input id="image-input" type="file" (change)="setBookCoverImage($event)"/>
+            <input id="image-input" type="file" accept="image/jpeg, image/png" (change)="setBookCoverImage($event)"/>
         </div>
         <div class="error-messages" *ngIf="imageErrors.length">
             <ul>

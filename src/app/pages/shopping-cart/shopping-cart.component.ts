@@ -64,7 +64,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        console.log("init")
         if (JSON.parse(localStorage.getItem('user') as string)) {
             this.user = JSON.parse(localStorage.getItem('user') as string)
         } else {

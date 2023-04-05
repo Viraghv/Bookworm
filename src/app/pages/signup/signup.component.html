@@ -34,7 +34,7 @@
             </mat-error>
             <mat-error
                 *ngIf="signUpForm.get('password')?.hasError('minlength') && !signUpForm.get('password')?.hasError('required')">
-                Password must be at least 4 characters long.
+                Password must be at least 6 characters long.
             </mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -45,7 +45,7 @@
             </mat-error>
             <mat-error
                 *ngIf="signUpForm.get('rePassword')?.hasError('minlength') && !signUpForm.get('rePassword')?.hasError('required')">
-                Password must be at least 4 characters long.
+                Password must be at least 6 characters long.
             </mat-error>
         </mat-form-field>
         <div class="error-messages" *ngIf="registrationErrorMessages.length">
