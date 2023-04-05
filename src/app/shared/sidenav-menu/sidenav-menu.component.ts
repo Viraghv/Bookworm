@@ -1,6 +1,5 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
-import {User} from "../models/User";
 import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {UserService} from "../services/user.service";

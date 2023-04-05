@@ -1,10 +1,9 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
-import {User} from "../models/User";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
-import {firstValueFrom, Subscription} from "rxjs";
+import {firstValueFrom} from "rxjs";
 
 @Component({
     selector: 'app-toolbar-menu',
