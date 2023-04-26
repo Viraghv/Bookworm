@@ -14,6 +14,6 @@ Jelszó: admin123
 
 ## Firebase környezeti változói
 
-Az <kbd>environment.ts</kbd> és <kbd>environment.prod.ts</kbd> mintája az <kbd>src/environment/environment.example.ts</kbd> fájlban található, az egyes változók értékei pedig a beadott feladatban vannak megadva. Ezek segítségével létre lehet hozni a kettő environment fájlt.
+Az <kbd>environment.ts</kbd> és <kbd>environment.prod.ts</kbd> fájlokban található környezeti változók értékei a feladatbeadáshoz csatolt fájlban találhatóak.
 
 

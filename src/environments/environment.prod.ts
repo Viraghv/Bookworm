@@ -1,4 +1,5 @@
 export const environment = {
+    // TODO Ide kell bemasolni a kornyezeti valozok ertekeit, amik a PeerReview feladatbeadasban talalhatoak
     firebase: {
         projectId: '',
         appId: '',
@@ -7,5 +8,6 @@ export const environment = {
         authDomain: '',
         messagingSenderId: '',
     },
-    production: null, // true or false
+
+    production: true
 };

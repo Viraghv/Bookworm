@@ -42,8 +42,6 @@ testem.log
 Thumbs.db
 
 /.vscode/
-/src/environments/environment.ts
-/src/environments/environment.prod.ts
 package-lock.json
 /.angular/
 
