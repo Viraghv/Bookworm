@@ -7,5 +7,5 @@ export const environment = {
         authDomain: '',
         messagingSenderId: '',
     },
-    production: false
+    production: null, // true or false
 };
